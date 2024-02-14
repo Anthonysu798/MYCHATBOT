@@ -1,0 +1,59 @@
+body {
+    background-color: #49108B;
+}
+
+#form{
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message__text{
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    color: #f9ffdd;
+    line-height: 1.8;
+}
+
+#chat-log{
+    font-size: 25px;
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+#message, button{
+    padding: 10px 50px;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#message {
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    color: #6F61C0;
+}
+
+button{
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #FFB534;
+    color: #49108B;
+    transition: ease-in-out 0.5s;
+}
+
+h1{
+    color: #F3F8FF;
+}

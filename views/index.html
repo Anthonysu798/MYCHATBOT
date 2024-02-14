@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Chatbot </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Anthony ChatBot</h1>
+    <form id="form" action="">
+        <input type="text" name="message" id="message" placeholder="Ask me">
+        <button type="submit">Send</button>
+    </form>
+    <div id="chat-log">
+        
+    </div>
+    <script>
+        const form = document.getElementById('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const messageInput = document.getElementById('message');
+            const messageText = messageInput.value;
+            messageInput.value = ''; // Clear input after getting the value
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add('message--sent');
+            messageElement.innerHTML = `<div class="message__text">You:   ${messageText}</div>`;
+            const chatLog = document.getElementById('chat-log');
+            chatLog.appendChild(messageElement);
+            chatLog.scrollTop = chatLog.scrollHeight;
+            
+            fetch('http://localhost:3000/chat', { // Corrected URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: messageText
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const replyElement = document.createElement('div');
+                replyElement.classList.add('message');
+                replyElement.classList.add('message--received');
+                replyElement.innerHTML = `<div class="message__text"> Chatbot: ${data.response}</div>`; // Corrected data access
+                chatLog.appendChild(replyElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        })
+    </script>
+    
+</body>
+</html>
