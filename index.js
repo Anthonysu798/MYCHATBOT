@@ -1,5 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: './api.env' });
+// delopy offline
+// import dotenv from 'dotenv';
+// dotenv.config({ path: './api.env' });
 import path from 'path';
 import OpenAI from "openai";
 import express from "express";
