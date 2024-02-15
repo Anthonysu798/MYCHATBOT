@@ -1,4 +1,5 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config({ path: './api.env' });
 import path from 'path';
 import OpenAI from "openai";
 import express from "express";
@@ -6,12 +7,12 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 const openai = new OpenAI({
-    organization: "org-iqLVzdvg1MJy6etRMfAs6nui",
-    apiKey: "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", // Remember to keep your API key secure
+    organization: process.env.OPENAI_ORGANIZATION, // keep this secret
+    apiKey: process.env.OPENAI_API_KEY, // keep this secret
 });
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'index.html'));
