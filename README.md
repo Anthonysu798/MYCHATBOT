@@ -86,6 +86,7 @@ The server will start on `http://localhost:3000` (or your specified PORT)
 MYCHATBOT/
 ├── index.js           # Main server file
 ├── package.json       # Project dependencies and scripts
+├── vercel.json        # Vercel deployment configuration
 ├── .env              # Environment variables (create this)
 ├── .env.example      # Environment variables template
 ├── .gitignore        # Git ignore file
@@ -98,13 +99,66 @@ MYCHATBOT/
 
 ## 🌐 Deployment
 
-This application was previously hosted on Cyclic. For deployment options, consider:
-- [Vercel](https://vercel.com/)
+### Deploying to Vercel (Recommended)
+
+This project is configured and ready for deployment on Vercel. Follow these steps:
+
+#### Option 1: Deploy via Vercel CLI
+
+1. Install Vercel CLI globally:
+```bash
+npm install -g vercel
+```
+
+2. Login to your Vercel account:
+```bash
+vercel login
+```
+
+3. Deploy the project:
+```bash
+vercel
+```
+
+4. Add environment variables:
+```bash
+vercel env add OPENAI_API_KEY
+vercel env add OPENAI_ORGANIZATION
+```
+
+5. Redeploy with environment variables:
+```bash
+vercel --prod
+```
+
+#### Option 2: Deploy via GitHub Integration
+
+1. Push your code to GitHub
+2. Visit [Vercel](https://vercel.com/) and sign up/login
+3. Click "New Project"
+4. Import your GitHub repository
+5. Add environment variables in the project settings:
+   - `OPENAI_API_KEY` - Your OpenAI API key
+   - `OPENAI_ORGANIZATION` - Your OpenAI organization ID
+6. Click "Deploy"
+
+#### Setting Environment Variables on Vercel
+
+In your Vercel project dashboard:
+1. Go to "Settings" → "Environment Variables"
+2. Add the following variables:
+   - **Name**: `OPENAI_API_KEY`, **Value**: Your OpenAI API key
+   - **Name**: `OPENAI_ORGANIZATION`, **Value**: Your organization ID
+3. Make sure to add them for all environments (Production, Preview, Development)
+
+### Other Deployment Options
+
+You can also deploy to:
 - [Render](https://render.com/)
 - [Railway](https://railway.app/)
 - [Heroku](https://heroku.com/)
 
-**Important**: Make sure to set up environment variables in your hosting platform's dashboard.
+**Important**: Always set up environment variables in your hosting platform's dashboard before deploying.
 
 ## 🔒 Security Notes
 

@@ -47,6 +47,12 @@ app.post("/chat", async (req, res) => {
 
 
 
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server listening at http://localhost:${port}`);
+    });
+}
+
+// Export for Vercel serverless
+export default app;
