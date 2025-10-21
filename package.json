@@ -1,7 +1,7 @@
 {
-  "name": "gpt4.0-bot",
-  "version": "1.0.0",
-  "description": "CHATGPT API BOT",
+  "name": "deepseek-chatbot",
+  "version": "2.0.0",
+  "description": "DeepSeek AI ChatBot - Powered by DeepSeek-V3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

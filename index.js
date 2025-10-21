@@ -1,15 +1,14 @@
-// delopy offline
-// import dotenv from 'dotenv';
-// dotenv.config({ path: './api.env' });
+// DeepSeek API Integration
 import path from 'path';
 import OpenAI from "openai";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-const openai = new OpenAI({
-    organization: process.env.OPENAI_ORGANIZATION, // keep this secret
-    apiKey: process.env.OPENAI_API_KEY, // keep this secret
+// Initialize DeepSeek client (OpenAI-compatible)
+const deepseek = new OpenAI({
+    apiKey: process.env.DEEPSEEK_API_KEY,
+    baseURL: 'https://api.deepseek.com'
 });
 
 const app = express();
@@ -29,18 +28,18 @@ app.get("/", (req, res) => {
 app.post("/chat", async (req, res) => {
     try {
         const userMessage = req.body.message || "Hello World";
-        const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+        const completion = await deepseek.chat.completions.create({
+            model: "deepseek-chat", // DeepSeek-V3 model
             messages: [{ role: "user", content: userMessage }],
         });
 
-        // Corrected access to the response text based on the actual structure
-        const responseText = completion.choices[0].message.content; 
+        // Extract response text from DeepSeek API
+        const responseText = completion.choices[0].message.content;
 
         res.json({ response: responseText });
     } catch (error) {
-        console.error("Error fetching completion from OpenAI:", error);
-        res.status(500).json({ error: "Error fetching completion from OpenAI" });
+        console.error("Error fetching completion from DeepSeek:", error);
+        res.status(500).json({ error: "Error fetching completion from DeepSeek API" });
     }
 });
 
